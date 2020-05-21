@@ -6,7 +6,7 @@ This is a profile page of a user. It allows the user to edit their name as well 
 
 Technologies used include:
 
-HTML/CSS
-Grid layouts
-Flex layouts
-Media queries for responsiveness
+-HTML/CSS
+-Grid layouts
+-Flex layouts
+-Media queries for responsiveness
