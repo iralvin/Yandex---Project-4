@@ -3,108 +3,170 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Around the US</title>
-	<link rel="stylesheet" href="style.css" />
-	<script src="main.js" defer></script>
+    <title>Around the U.S.</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+    <script src="main.js" defer></script>
   </head>
-  <body>
-    <div class="page">
-      <header class="header block block_s">
-        <img class="header__logo" src="./images/logo.svg" alt="header logo" />
-      </header>
+  <body class="page">
+    <header class="header block block_s">
+      <img class="header__logo" src="./images/logo.svg" alt="header logo" />
+    </header>
 
-      <main>
-        <section class="profile block block_s">
-          <img class="profile__avatar" src="./images/image.jpg" alt="" />
+    <main>
+      <section class="profile block block_s">
+        <img
+          class="profile__avatar"
+          src="./images/image.jpg"
+          alt="old man in wearing red beanie"
+        />
 
-          <div class="profile__info">
-            <div class="profile__name-container">
-              <h2 class="profile__name">Jacques Cousteau</h2>
-              <button class="profile__edit-button button"></button>
-            </div>
-            <p class="profile__about-me">Explorer</p>
+        <div class="profile__info">
+          <div class="profile__name-container">
+            <h2 class="profile__name">Jacques Cousteau</h2>
+            <button class="profile__edit-button button"></button>
           </div>
+          <p class="profile__about-me">Explorer</p>
+        </div>
 
-          <button class="profile__add-button button"></button>
-		</section>
-		
+        <button class="profile__add-button button"></button>
+      </section>
 
-		<section class="elements block block_s">
-			<ul class="elements__list">
-				<li class="elements__list-item">
-					<div class="elements__element">
-						<img class="elements__image" src="./images/yosemite.png" alt="" >
-						<div class="elements__title-container">
-							<h2 class="elements__location-name">Yosemite Valley</h2>
-							<img  class="elements__like" src="./images/heart.svg" alt="">
-						</div>
-					</div>
-				</li>
-				<li class="elements__list-item">
-					<div class="elements__element">
-						<img class="elements__image" src="./images/lake-louise.png" alt="" >
-						<div class="elements__title-container">
-							<h2 class="elements__location-name">Lake Louise</h2>
-							<img  class="elements__like" src="./images/heart.svg" alt="">
-						</div>
-					</div>
-				</li>
-				<li class="elements__list-item">
-					<div class="elements__element">
-						<img class="elements__image" src="./images/bald-mountains.png" alt="" >
-						<div class="elements__title-container">
-							<h2 class="elements__location-name">Bald Mountains</h2>
-							<img  class="elements__like" src="./images/heart.svg" alt="">
-						</div>
-					</div>
-				</li>
-				<li class="elements__list-item">
-					<div class="elements__element">
-						<img class="elements__image" src="./images/latemar.png" alt="" >
-						<div class="elements__title-container">
-							<h2 class="elements__location-name">Latemar</h2>
-							<img  class="elements__like" src="./images/heart.svg" alt="">
-						</div>
-					</div>
-				</li>
-				<li class="elements__list-item">
-					<div class="elements__element">
-						<img class="elements__image" src="./images/vanoise-national-park.png" alt="" >
-						<div class="elements__title-container">
-							<h2 class="elements__location-name">Vanois National...</h2>
-							<img  class="elements__like" src="./images/heart.svg" alt="">
-						</div>
-					</div>
-				</li>
-				<li class="elements__list-item">
-					<div class="elements__element">
-						<img class="elements__image" src="./images/lago-di-braies.png" alt="" >
-						<div class="elements__title-container">
-							<h2 class="elements__location-name">Lago di Braies</h2>
-							<img  class="elements__like" src="./images/heart.svg" alt="">
-						</div>
-					</div>
-				</li>
-			</ul>
-		</section>
+      <section class="elements block block_s">
+        <ul class="elements__list">
+          <li class="elements__list-item">
+            <div class="elements__element">
+              <img
+                class="elements__image"
+                src="./images/yosemite.png"
+                alt="Yosemite Valley moutains in background with river and pine trees"
+              />
+              <div class="elements__title-container">
+                <h2 class="elements__location-name">Yosemite Valley</h2>
+                <img
+                  class="elements__like"
+                  src="./images/heart.svg"
+                  alt="outline of heart"
+                />
+              </div>
+            </div>
+          </li>
+          <li class="elements__list-item">
+            <div class="elements__element">
+              <img
+                class="elements__image"
+                src="./images/lake-louise.png"
+                alt="Lake Louise green lake with mountains on left and right sides"
+              />
+              <div class="elements__title-container">
+                <h2 class="elements__location-name">Lake Louise</h2>
+                <img
+                  class="elements__like"
+                  src="./images/heart.svg"
+                  alt="outline of heart"
+                />
+              </div>
+            </div>
+          </li>
+          <li class="elements__list-item">
+            <div class="elements__element">
+              <img
+                class="elements__image"
+                src="./images/bald-mountains.png"
+                alt="Bald Mountains sunset over moutains"
+              />
+              <div class="elements__title-container">
+                <h2 class="elements__location-name">Bald Mountains</h2>
+                <img
+                  class="elements__like"
+                  src="./images/heart.svg"
+                  alt="outline of heart"
+                />
+              </div>
+            </div>
+          </li>
+          <li class="elements__list-item">
+            <div class="elements__element">
+              <img
+                class="elements__image"
+                src="./images/latemar.png"
+                alt="Latemar starry night behind snow covered mountain"
+              />
+              <div class="elements__title-container">
+                <h2 class="elements__location-name">Latemar</h2>
+                <img
+                  class="elements__like"
+                  src="./images/heart.svg"
+                  alt="outline of heart"
+                />
+              </div>
+            </div>
+          </li>
+          <li class="elements__list-item">
+            <div class="elements__element">
+              <img
+                class="elements__image"
+                src="./images/vanoise-national-park.png"
+                alt="mountain lake vanoise national park"
+              />
+              <div class="elements__title-container">
+                <h2 class="elements__location-name">Vanois National...</h2>
+                <img
+                  class="elements__like"
+                  src="./images/heart.svg"
+                  alt="outline of heart"
+                />
+              </div>
+            </div>
+          </li>
+          <li class="elements__list-item">
+            <div class="elements__element">
+              <img
+                class="elements__image"
+                src="./images/lago-di-braies.png"
+                alt="Lago di Braies row bow docked on a mountain lake"
+              />
+              <div class="elements__title-container">
+                <h2 class="elements__location-name">Lago di Braies</h2>
+                <img
+                  class="elements__like"
+                  src="./images/heart.svg"
+                  alt="outline of heart"
+                />
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
 
-		<section class="edit-form">
-			<div class="edit-form__pop-up ">
-				<button class="edit-form__close button"></button>
-				<form class="edit-form__form" action="">
-					<h2 class="edit-form__title">Edit profile</h2>
-					<input class="edit-form__input edit-form__input_name" type="text" name="name" maxlength="23" placeholder="Name">
-					<input class="edit-form__input edit-form__input_about-me" type="text" name="about-me" maxlength="23" placeholder="About me">
-					<button class="edit-form__submit button" type="submit">Save</button>
-				</form>
-			</div>
-		</section>
+      <section class="edit-form">
+        <div class="edit-form__pop-up">
+          <button class="edit-form__close button"></button>
+          <form class="edit-form__form" action="">
+            <h2 class="edit-form__title">Edit profile</h2>
+            <input
+              class="edit-form__input edit-form__input_name"
+              type="text"
+              name="name"
+              maxlength="23"
+              placeholder="Name"
+            />
+            <input
+              class="edit-form__input edit-form__input_about-me"
+              type="text"
+              name="about-me"
+              maxlength="23"
+              placeholder="About me"
+            />
+            <button class="edit-form__submit button" type="submit">
+              Save
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
 
-      </main>
-
-      <footer class="footer block block_s">
-		  <p class="footer__copyright">© 2020 Around The U.S.</p>
-	  </footer>
-    </div>
+    <footer class="footer block block_s">
+      <p class="footer__copyright">© 2020 Around The U.S.</p>
+    </footer>
   </body>
 </html>

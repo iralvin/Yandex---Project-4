@@ -1,13 +1,13 @@
-let profileName = document.querySelector(".profile__name");
-let profileAboutMe = document.querySelector(".profile__about-me");
+const profileName = document.querySelector(".profile__name");
+const profileAboutMe = document.querySelector(".profile__about-me");
 
-let editButton = document.querySelector(".profile__edit-button");
+const editButton = document.querySelector(".profile__edit-button");
 
-let editFormSection = document.querySelector(".edit-form");
-let editForm = editFormSection.querySelector(".edit-form__form");
-let closeEditButton = editFormSection.querySelector(".edit-form__close");
-let nameInput = editFormSection.querySelector(".edit-form__input_name");
-let aboutMeInput = editFormSection.querySelector(".edit-form__input_about-me");
+const editFormSection = document.querySelector(".edit-form");
+const editForm = editFormSection.querySelector(".edit-form__form");
+const closeEditButton = editFormSection.querySelector(".edit-form__close");
+const nameInput = editFormSection.querySelector(".edit-form__input_name");
+const aboutMeInput = editFormSection.querySelector(".edit-form__input_about-me");
 
 
 editButton.addEventListener("click", function () {

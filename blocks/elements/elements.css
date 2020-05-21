@@ -1,0 +1,17 @@
+@import url("./__element/elements__element.css");
+@import url("./__image/elements__image.css");
+@import url("./__list/elements__list.css");
+@import url("./__like/elements__like.css");
+@import url("./__location-name/elements__location-name.css");
+@import url("./__title-container/elements__title-container.css");
+
+.elements {
+  margin: auto;
+  margin-top: 51px;
+}
+
+@media screen and (max-width: 720px) {
+  .elements {
+    margin-top: 36px;
+  }
+}
