@@ -6,9 +6,10 @@ const editButton = document.querySelector(".profile__edit-button");
 const editFormSection = document.querySelector(".edit-form");
 const editForm = editFormSection.querySelector(".edit-form__form");
 const closeEditButton = editFormSection.querySelector(".edit-form__close");
-const nameInput = editFormSection.querySelector(".edit-form__input_name");
-const aboutMeInput = editFormSection.querySelector(".edit-form__input_about-me");
-
+const nameInput = editFormSection.querySelector(".edit-form__name-input");
+const aboutMeInput = editFormSection.querySelector(
+  ".edit-form__about-me-input"
+);
 
 editButton.addEventListener("click", function () {
   editFormSection.classList.add("popup_opened");
@@ -19,7 +20,13 @@ editButton.addEventListener("click", function () {
 
 closeEditButton.addEventListener("click", closeEditForm);
 
-editForm.addEventListener("submit", function (e) {
+editForm.addEventListener("submit", formSubmitHandler);
+
+function closeEditForm() {
+  editFormSection.classList.remove("popup_opened");
+}
+
+function formSubmitHandler(e) {
   e.preventDefault();
   let newName = nameInput.value;
   let newAboutMe = aboutMeInput.value;
@@ -30,9 +37,4 @@ editForm.addEventListener("submit", function (e) {
   aboutMeInput.value = "";
 
   closeEditForm();
-
-});
-
-function closeEditForm() {
-  editFormSection.classList.remove("popup_opened");
 }

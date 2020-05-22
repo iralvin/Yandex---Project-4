@@ -1,5 +1,9 @@
-@import url("./_s/block_s.css");
-
 .block {
   max-width: 882px;
+}
+
+@media screen and (max-width: 720px) {
+  .block {
+    max-width: 600px;
+  }
 }

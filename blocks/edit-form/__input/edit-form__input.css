@@ -1,6 +1,3 @@
-@import url("./_about-me/edit-form__input_about-me.css");
-@import url("./_name/edit-form__input_name.css");
-
 .edit-form__input {
 	border: none;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
