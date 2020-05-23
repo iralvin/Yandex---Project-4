@@ -128,33 +128,35 @@
 
     <footer class="footer block">
       <p class="footer__copyright">© 2020 Around The U.S.</p>
-	</footer>
-	
-	<section class="edit-form">
-        <div class="edit-form__pop-up">
-          <button class="edit-form__close button"></button>
-          <form class="edit-form__form" action="#">
-            <h2 class="edit-form__title">Edit profile</h2>
-            <input
-              class="edit-form__input edit-form__name-input"
-              type="text"
-              name="name"
-              maxlength="23"
-              placeholder="Name"
-            />
-            <input
-              class="edit-form__input edit-form__about-me-input"
-              type="text"
-              name="about-me"
-              maxlength="23"
-              placeholder="About me"
-            />
-            <button class="edit-form__submit button" type="submit">
-              Save
-            </button>
-          </form>
-        </div>
-      </section>
+    </footer>
+
+    <section class="edit-form">
+      <div class="edit-form__pop-up">
+        <button class="edit-form__close button"></button>
+        <form class="edit-form__form" action="#">
+          <h2 class="edit-form__title">Edit profile</h2>
+          <input
+            class="edit-form__input edit-form__input_margin_name"
+            id="name-input"
+            type="text"
+            name="name"
+            maxlength="23"
+            placeholder="Name"
+          />
+          <input
+            class="edit-form__input edit-form__input_margin_about-me"
+            id="about-me-input"
+            type="text"
+            name="about-me"
+            maxlength="23"
+            placeholder="About me"
+          />
+          <button class="edit-form__submit button" type="submit">
+            Save
+          </button>
+        </form>
+      </div>
+    </section>
 
     <script src="index.js"></script>
   </body>
