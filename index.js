@@ -3,24 +3,24 @@ const profileAboutMe = document.querySelector(".profile__about-me");
 
 const editButton = document.querySelector(".profile__edit-button");
 
-const editFormSection = document.querySelector(".edit-form");
-const editForm = editFormSection.querySelector(".edit-form__form");
-const closeEditButton = editFormSection.querySelector(".edit-form__close");
+const editFormSection = document.querySelector(".popup");
+const editForm = editFormSection.querySelector(".popup__form");
+const closeEditButton = editFormSection.querySelector(".popup__close");
 const nameInput = editFormSection.querySelector(
-  ".edit-form__input[name='name']"
+  ".popup__input_type_name"
 );
 const aboutMeInput = editFormSection.querySelector(
-  ".edit-form__input[name='about-me']"
+  ".popup__input_type_about-me"
 );
 
 function showPopup() {
-  editFormSection.classList.add("popup-opened");
+  editFormSection.classList.add("popup_opened");
   nameInput.value = profileName.textContent;
   aboutMeInput.value = profileAboutMe.textContent;
 }
 
 function closePopup() {
-  editFormSection.classList.remove("popup-opened");
+  editFormSection.classList.remove("popup_opened");
 }
 
 function formSubmitHandler(e) {

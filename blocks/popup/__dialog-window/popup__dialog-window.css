@@ -1,4 +1,4 @@
-.edit-form__dialog-window {
+.popup__dialog-window {
   min-width: 430px;
   height: 330px;
   background: #ffffff;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .edit-form__dialog-window {
+  .popup__dialog-window {
     min-width: 250px;
   }
 }

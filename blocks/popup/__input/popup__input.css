@@ -1,0 +1,11 @@
+@import url("./_margin/_about-me/popup__input_margin_about-me.css");
+@import url("./_margin/_name/popup__input_margin_name.css");
+
+.popup__input {
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 25px;
+  }
