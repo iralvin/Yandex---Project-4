@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
-    <header class="header block">
+    <header class="header page__section">
       <img class="header__logo" src="./images/logo.svg" alt="header logo" />
     </header>
 
     <main>
-      <section class="profile block">
+      <section class="profile page__section">
         <img
           class="profile__avatar"
           src="./images/image.jpg"
@@ -30,7 +30,7 @@
         <button class="profile__add-button button"></button>
       </section>
 
-      <section class="elements block">
+      <section class="elements page__section">
         <ul class="elements__list">
           <li class="elements__list-item">
             <img
@@ -40,11 +40,9 @@
             />
             <div class="elements__title-container">
               <h2 class="elements__location-name">Yosemite Valley</h2>
-              <img
+              <button
                 class="elements__like"
-                src="./images/heart.svg"
-                alt="outline of heart"
-              />
+              ></button>
             </div>
           </li>
           <li class="elements__list-item">
@@ -55,11 +53,9 @@
             />
             <div class="elements__title-container">
               <h2 class="elements__location-name">Lake Louise</h2>
-              <img
+              <button
                 class="elements__like"
-                src="./images/heart.svg"
-                alt="outline of heart"
-              />
+              ></button>
             </div>
           </li>
           <li class="elements__list-item">
@@ -70,11 +66,9 @@
             />
             <div class="elements__title-container">
               <h2 class="elements__location-name">Bald Mountains</h2>
-              <img
+              <button
                 class="elements__like"
-                src="./images/heart.svg"
-                alt="outline of heart"
-              />
+              ></button>
             </div>
           </li>
           <li class="elements__list-item">
@@ -85,11 +79,9 @@
             />
             <div class="elements__title-container">
               <h2 class="elements__location-name">Latemar</h2>
-              <img
-                class="elements__like"
-                src="./images/heart.svg"
-                alt="outline of heart"
-              />
+			  <button
+			  class="elements__like"
+			></button>
             </div>
           </li>
           <li class="elements__list-item">
@@ -99,12 +91,10 @@
               alt="mountain lake vanoise national park"
             />
             <div class="elements__title-container">
-              <h2 class="elements__location-name">Vanois National...</h2>
-              <img
+              <h2 class="elements__location-name">Vanois National Park</h2>
+              <button
                 class="elements__like"
-                src="./images/heart.svg"
-                alt="outline of heart"
-              />
+              ></button>
             </div>
           </li>
           <li class="elements__list-item">
@@ -115,29 +105,26 @@
             />
             <div class="elements__title-container">
               <h2 class="elements__location-name">Lago di Braies</h2>
-              <img
+              <button
                 class="elements__like"
-                src="./images/heart.svg"
-                alt="outline of heart"
-              />
+              ></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
 
-    <footer class="footer block">
+    <footer class="footer page__section">
       <p class="footer__copyright">© 2020 Around The U.S.</p>
     </footer>
 
     <section class="edit-form">
-      <div class="edit-form__pop-up">
+      <div class="edit-form__dialog-window">
         <button class="edit-form__close button"></button>
         <form class="edit-form__form" action="#">
           <h2 class="edit-form__title">Edit profile</h2>
           <input
             class="edit-form__input edit-form__input_margin_name"
-            id="name-input"
             type="text"
             name="name"
             maxlength="23"
@@ -145,7 +132,6 @@
           />
           <input
             class="edit-form__input edit-form__input_margin_about-me"
-            id="about-me-input"
             type="text"
             name="about-me"
             maxlength="23"

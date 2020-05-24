@@ -1,9 +1,10 @@
 @import url("./__close/edit-form__close.css");
 @import url("./__form/edit-form__form.css");
 @import url("./__input/edit-form__input.css");
-@import url("./__pop-up/edit-form__pop-up.css");
+@import url("./__dialog-window/edit-form__dialog-window.css");
 @import url("./__submit/edit-form__submit.css");
 @import url("./__title/edit-form__title.css");
+
 
 .edit-form {
   display: none;

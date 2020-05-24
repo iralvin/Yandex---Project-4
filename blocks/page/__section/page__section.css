@@ -1,9 +1,9 @@
-.block {
+.page__section {
   max-width: 882px;
 }
 
 @media screen and (max-width: 720px) {
-  .block {
+  .page__section {
     max-width: 600px;
   }
 }
