@@ -31,86 +31,7 @@
       </section>
 
       <section class="elements page__section">
-        <ul class="elements__list">
-          <li class="elements__list-item">
-            <img
-              class="elements__image"
-              src="./images/yosemite.png"
-              alt="Yosemite Valley moutains in background with river and pine trees"
-            />
-            <div class="elements__title-container">
-              <h2 class="elements__location-name">Yosemite Valley</h2>
-              <button
-                class="elements__like"
-              ></button>
-            </div>
-          </li>
-          <li class="elements__list-item">
-            <img
-              class="elements__image"
-              src="./images/lake-louise.png"
-              alt="Lake Louise green lake with mountains on left and right sides"
-            />
-            <div class="elements__title-container">
-              <h2 class="elements__location-name">Lake Louise</h2>
-              <button
-                class="elements__like"
-              ></button>
-            </div>
-          </li>
-          <li class="elements__list-item">
-            <img
-              class="elements__image"
-              src="./images/bald-mountains.png"
-              alt="Bald Mountains sunset over moutains"
-            />
-            <div class="elements__title-container">
-              <h2 class="elements__location-name">Bald Mountains</h2>
-              <button
-                class="elements__like"
-              ></button>
-            </div>
-          </li>
-          <li class="elements__list-item">
-            <img
-              class="elements__image"
-              src="./images/latemar.png"
-              alt="Latemar starry night behind snow covered mountain"
-            />
-            <div class="elements__title-container">
-              <h2 class="elements__location-name">Latemar</h2>
-			  <button
-			  class="elements__like"
-			></button>
-            </div>
-          </li>
-          <li class="elements__list-item">
-            <img
-              class="elements__image"
-              src="./images/vanoise-national-park.png"
-              alt="mountain lake vanoise national park"
-            />
-            <div class="elements__title-container">
-              <h2 class="elements__location-name">Vanois National Park</h2>
-              <button
-                class="elements__like"
-              ></button>
-            </div>
-          </li>
-          <li class="elements__list-item">
-            <img
-              class="elements__image"
-              src="./images/lago-di-braies.png"
-              alt="Lago di Braies row bow docked on a mountain lake"
-            />
-            <div class="elements__title-container">
-              <h2 class="elements__location-name">Lago di Braies</h2>
-              <button
-                class="elements__like"
-              ></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
     </main>
 
@@ -118,32 +39,74 @@
       <p class="footer__copyright">© 2020 Around The U.S.</p>
     </footer>
 
-    <section class="popup">
+    <section class="popup popup_type_edit">
       <div class="popup__dialog-window">
-        <button class="popup__close button"></button>
+        <button class="popup__close popup__close_type_edit button"></button>
         <form class="popup__form" action="#">
           <h2 class="popup__title">Edit profile</h2>
           <input
-            class="popup__input popup__input_margin_name popup__input_type_name"
+            class="popup__input popup__input_margin_top-input popup__input_type_name"
             type="text"
             name="name"
             maxlength="23"
             placeholder="Name"
           />
           <input
-            class="popup__input popup__input_margin_about-me popup__input_type_about-me"
+            class="popup__input popup__input_margin_bottom-input popup__input_type_about-me"
             type="text"
             name="about-me"
             maxlength="23"
             placeholder="About me"
           />
-          <button class="popup__submit button" type="submit">
+          <button class="popup__submit save-button button" type="submit">
             Save
           </button>
         </form>
       </div>
     </section>
 
+    <section class="popup popup_type_add">
+      <div class="popup__dialog-window">
+        <button class="popup__close popup__close_type_add button"></button>
+        <form class="popup__form" action="#">
+          <h2 class="popup__title">New place</h2>
+          <input
+            class="popup__input popup__input_margin_top-input popup__input_type_title"
+            type="text"
+            name="title"
+            placeholder="Title"
+          />
+          <input
+            class="popup__input popup__input_margin_bottom-input popup__input_type_image-link"
+            type="text"
+            name="image-link"
+            placeholder="Image link"
+          />
+          <button class="popup__submit create-button button" type="submit">
+            Create
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section class="popup popup_type_image">
+      <div class="popup__image-container">
+        <button class="popup__close popup__close_type_image button"></button>
+        <img src="" alt="" class="popup__full-size-image" />
+        <p class="popup__image-caption"></p>
+      </div>
+    </section>
+
+    <template id="location-template">
+      <li class="elements__list-item">
+        <button class="elements__trash button"></button>
+        <img class="elements__image" src="" />
+        <div class="elements__title-container">
+          <h2 class="elements__location-name"></h2>
+          <button class="elements__like button"></button>
+        </div>
+      </li>
+    </template>
     <script src="index.js"></script>
   </body>
 </html>

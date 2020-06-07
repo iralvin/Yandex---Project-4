@@ -1,5 +1,5 @@
-@import url("./_margin/_about-me/popup__input_margin_about-me.css");
-@import url("./_margin/_name/popup__input_margin_name.css");
+@import url("./_margin/_bottom-input/popup__input_margin_bottom-input.css");
+@import url("./_margin/_top-input/popup__input_margin_top-input.css");
 
 .popup__input {
 	border: none;
