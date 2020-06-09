@@ -18,6 +18,6 @@
   left: 0;
   color: black;
   visibility: hidden;
-  transition: opacity 0.5s;
+  transition: opacity .5s, visibility .5s;
   opacity: 0;
 }

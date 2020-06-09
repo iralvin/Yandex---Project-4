@@ -1,7 +1,7 @@
 @import url("./__section/page__section.css");
 
 .page {
-  font-family: Inter, Arial, sans-serif;
+  font-family: "Inter", "Arial", sans-serif;
   color: #ffffff;
   background: #000000;
   -moz-osx-font-smoothing: grayscale;
