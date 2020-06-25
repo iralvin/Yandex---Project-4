@@ -41,23 +41,40 @@
 
     <div class="popup popup_type_edit">
       <div class="popup__dialog-window">
-        <button class="popup__close  button"></button>
-        <form class="popup__form" action="#">
+        <button class="popup__close button"></button>
+        <form
+          class="popup__form"
+          action="#"
+          novalidate
+          name="edit-profile-form"
+          autocomplete="off"
+        >
           <h2 class="popup__title">Edit profile</h2>
           <input
             class="popup__input popup__input_margin_top-input popup__input_type_name"
+            id="name-input"
             type="text"
             name="name"
-            maxlength="23"
+            minlength="2"
+            maxlength="40"
             placeholder="Name"
+            value="Jacques Cousteau"
+            required
           />
+          <span class="popup__input-error" id="name-input-error"></span>
           <input
             class="popup__input popup__input_margin_bottom-input popup__input_type_about-me"
+            id="about-me-input"
             type="text"
             name="about-me"
-            maxlength="23"
+            minlength="2"
+            maxlength="400"
             placeholder="About me"
+            value="Explorer"
+            required
           />
+          <span class="popup__input-error" id="about-me-input-error"></span>
+
           <button class="popup__submit save-button button" type="submit">
             Save
           </button>
@@ -67,21 +84,31 @@
 
     <div class="popup popup_type_add">
       <div class="popup__dialog-window">
-        <button class="popup__close  button"></button>
-        <form class="popup__form" action="#">
+        <button class="popup__close button"></button>
+        <form class="popup__form" action="#" novalidate autocomplete="off">
           <h2 class="popup__title">New place</h2>
           <input
             class="popup__input popup__input_margin_top-input popup__input_type_title"
+            id="title-input"
             type="text"
             name="title"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
+            required
           />
+          <span class="popup__input-error" id="title-input-error"></span>
+
           <input
             class="popup__input popup__input_margin_bottom-input popup__input_type_image-link"
-            type="text"
+            id="image-link-input"
+            type="url"
             name="image-link"
             placeholder="Image link"
+            required
           />
+          <span class="popup__input-error" id="image-link-input-error"></span>
+
           <button class="popup__submit create-button button" type="submit">
             Create
           </button>
@@ -91,11 +118,11 @@
 
     <div class="popup popup_type_image">
       <div class="popup__image-container">
-		<button class="popup__close  button"></button>
-		<figure>
-			<img src="" alt="" class="popup__full-size-image" />
-			<figcaption class="popup__image-caption"></figcaption>
-		</figure>
+        <button class="popup__close button"></button>
+        <figure class="popup__figure-container">
+          <img src="" alt="" class="popup__full-size-image" />
+          <figcaption class="popup__image-caption"></figcaption>
+        </figure>
       </div>
     </div>
 
@@ -110,5 +137,6 @@
       </li>
     </template>
     <script src="index.js"></script>
+    <script src="validate.js"></script>
   </body>
 </html>

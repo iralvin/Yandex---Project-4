@@ -2,18 +2,16 @@ const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__about-me");
 
 const editButton = document.querySelector(".profile__edit-button");
-const editFormSection = document.querySelector(".popup_type_edit");
-const editForm = editFormSection.querySelector(".popup__form");
-const editCloseButton = editFormSection.querySelector(".popup__close");
-const saveButton = editForm.querySelector(".save-button");
+const editPopup = document.querySelector(".popup_type_edit");
+const editForm = editPopup.querySelector(".popup__form");
+const editCloseButton = editPopup.querySelector(".popup__close");
 const nameInput = editForm.querySelector(".popup__input_type_name");
 const aboutMeInput = editForm.querySelector(".popup__input_type_about-me");
 
 const addButton = document.querySelector(".profile__add-button");
-const addFormSection = document.querySelector(".popup_type_add");
-const addForm = addFormSection.querySelector(".popup__form");
-const addCloseButton = addFormSection.querySelector(".popup__close");
-const createButton = addForm.querySelector(".create-button");
+const addPopup = document.querySelector(".popup_type_add");
+const addForm = addPopup.querySelector(".popup__form");
+const addCloseButton = addPopup.querySelector(".popup__close");
 const titleInput = addForm.querySelector(".popup__input_type_title");
 const imageLinkInput = addForm.querySelector(".popup__input_type_image-link");
 
@@ -53,6 +51,8 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
 ];
+
+const popupList = Array.from(document.querySelectorAll(".popup"));
 
 // Function to toggle full size image
 function toggleImage() {
@@ -101,19 +101,14 @@ function createLocationCard(locationTitle, locationLink) {
 }
 
 // Function to populate edit form when opened
-function populateProfileEditForm() {
+function populateProfileEditForm(form) {
   nameInput.value = profileName.textContent;
   aboutMeInput.value = profileAboutMe.textContent;
 }
 
-// Function to toggle popup edit menu
-function toggleEdit() {
-  editFormSection.classList.toggle("popup_opened");
-}
-
-// Function to toggle popup add location menu
-function toggleAdd() {
-  addFormSection.classList.toggle("popup_opened");
+// Function to toggle popup
+function togglePopup(formElement) {
+  formElement.classList.toggle("popup_opened");
 }
 
 // Function to handle edit form when submitted. Edit form will save new name/about me.
@@ -121,7 +116,6 @@ function editFormSubmitHandler(e) {
   e.preventDefault();
   profileName.textContent = nameInput.value.trim();
   profileAboutMe.textContent = aboutMeInput.value.trim();
-  toggleEdit();
 }
 
 // Function to handle add location form when submitted. Will create new location card.
@@ -129,7 +123,26 @@ function addFormSubmitHandler(e) {
   e.preventDefault();
   createLocationCard(titleInput.value.trim(), imageLinkInput.value.trim());
   addForm.reset();
-  toggleAdd();
+}
+
+// Function to check if popup contains a form element
+function checkHasForm(popup) {
+  if (popup.querySelector(".popup__form")) {
+    return true;
+  }
+  return false;
+}
+
+// Function to close form popup and reset input fields
+function closeFormHandler(popup) {
+  const popupForm = popup.querySelector(".popup__form");
+  popup.classList.remove("popup_opened");
+  popupForm.reset();
+}
+
+// Function to close image popup
+function closeImageHandler() {
+  imagePopup.classList.remove("popup_opened");
 }
 
 // Iterate through pre-existing locations with forEach to create initial location cards on page load
@@ -137,13 +150,69 @@ initialCards.forEach((location) => {
   createLocationCard(location.name, location.link);
 });
 
-editButton.addEventListener("click", populateProfileEditForm);
-editButton.addEventListener("click", toggleEdit);
-editCloseButton.addEventListener("click", toggleEdit);
-editForm.addEventListener("submit", editFormSubmitHandler);
+// Creates a listener for Esc key to close popups
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Escape") {
+    popupList.forEach((popup) => {
+      if (popup.classList.contains("popup_opened")) {
+        togglePopup(popup);
 
-addButton.addEventListener("click", toggleAdd);
-addCloseButton.addEventListener("click", toggleAdd);
-addForm.addEventListener("submit", addFormSubmitHandler);
+        if (checkHasForm(popup)) {
+          closeFormHandler(popup);
+        }
+      }
+    });
+  }
+});
 
-imageCloseButton.addEventListener("click", toggleImage);
+editButton.addEventListener("click", () => {
+  populateProfileEditForm(editForm);
+  togglePopup(editPopup);
+});
+
+editCloseButton.addEventListener("click", () => {
+  closeFormHandler(editPopup);
+});
+
+editPopup.addEventListener("click", (e) => {
+  const targetElement = e.target;
+  if (targetElement.classList.contains("popup")) {
+    closeFormHandler(editPopup);
+  }
+});
+
+editForm.addEventListener("submit", (e) => {
+  editFormSubmitHandler(e);
+  closeFormHandler(editPopup);
+});
+
+addButton.addEventListener("click", () => {
+  togglePopup(addPopup);
+});
+
+addCloseButton.addEventListener("click", () => {
+  closeFormHandler(addPopup);
+});
+
+addPopup.addEventListener("click", (e) => {
+  const targetElement = e.target;
+  if (targetElement.classList.contains("popup")) {
+    closeFormHandler(addPopup);
+  }
+});
+
+addForm.addEventListener("submit", (e) => {
+  addFormSubmitHandler(e);
+  closeFormHandler(addPopup);
+});
+
+imageCloseButton.addEventListener("click", () => {
+  toggleImage();
+});
+
+imagePopup.addEventListener("click", (e) => {
+  const targetElement = e.target;
+  if (targetElement.classList.contains("popup")) {
+    closeImageHandler();
+  }
+});

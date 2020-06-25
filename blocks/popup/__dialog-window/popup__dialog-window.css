@@ -13,6 +13,7 @@
 
 @media screen and (max-width: 480px) {
   .popup__dialog-window {
-    min-width: 250px;
+	min-width: 250px;
+	height:350px
   }
 }
