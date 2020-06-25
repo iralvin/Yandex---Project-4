@@ -54,6 +54,26 @@ const initialCards = [
 
 const popupList = Array.from(document.querySelectorAll(".popup"));
 
+// Creates a listener for Esc key to close popups
+function escapeKeyClose(e) {
+  if (e.key === "Escape") {
+    popupList.forEach((popup) => {
+      if (popup.classList.contains("popup_opened")) {
+        togglePopup(popup);
+
+        if (checkHasForm(popup)) {
+          closeFormHandler(popup);
+        }
+      }
+    });
+    document.removeEventListener("keyup", escapeKeyClose);
+  }
+}
+
+function attachEscapeListener() {
+  document.addEventListener("keyup", escapeKeyClose);
+}
+
 // Function to toggle full size image
 function toggleImage() {
   imagePopup.classList.toggle("popup_opened");
@@ -91,6 +111,7 @@ function createLocationCard(locationTitle, locationLink) {
 
   locationImage.src = locationLink;
   locationImage.addEventListener("click", viewFullImage);
+  locationImage.addEventListener("click", attachEscapeListener);
 
   locationName.textContent = locationTitle;
   likeButton.addEventListener("click", toggleLikedPicture);
@@ -150,24 +171,10 @@ initialCards.forEach((location) => {
   createLocationCard(location.name, location.link);
 });
 
-// Creates a listener for Esc key to close popups
-document.addEventListener("keyup", (e) => {
-  if (e.key === "Escape") {
-    popupList.forEach((popup) => {
-      if (popup.classList.contains("popup_opened")) {
-        togglePopup(popup);
-
-        if (checkHasForm(popup)) {
-          closeFormHandler(popup);
-        }
-      }
-    });
-  }
-});
-
 editButton.addEventListener("click", () => {
   populateProfileEditForm(editForm);
   togglePopup(editPopup);
+  attachEscapeListener();
 });
 
 editCloseButton.addEventListener("click", () => {
@@ -188,6 +195,7 @@ editForm.addEventListener("submit", (e) => {
 
 addButton.addEventListener("click", () => {
   togglePopup(addPopup);
+  attachEscapeListener();
 });
 
 addCloseButton.addEventListener("click", () => {
