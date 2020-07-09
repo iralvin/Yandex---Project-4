@@ -1,3 +1,6 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__about-me");
 
@@ -64,61 +67,14 @@ function escapeKeyClose(e) {
         if (checkHasForm(popup)) {
           closeFormHandler(popup);
         }
+        document.removeEventListener("keyup", escapeKeyClose);
       }
     });
-    document.removeEventListener("keyup", escapeKeyClose);
   }
 }
 
 function attachEscapeListener() {
   document.addEventListener("keyup", escapeKeyClose);
-}
-
-// Function to toggle full size image
-function toggleImage() {
-  imagePopup.classList.toggle("popup_opened");
-}
-
-// Function to view larger image when clicked
-function viewFullImage(e) {
-  const fullSizeImage = imagePopup.querySelector(".popup__full-size-image");
-  const imageCaption = imagePopup.querySelector(".popup__image-caption");
-  toggleImage();
-  fullSizeImage.src = this.src;
-  imageCaption.textContent = e.target.nextElementSibling.querySelector(
-    ".elements__location-name"
-  ).textContent;
-}
-
-// Function to toggle liking picture when clicking like button (heart)
-function toggleLikedPicture(e) {
-  e.target.classList.toggle("elements__like_liked");
-}
-
-// Function to delete location cards when clicking trash icon
-function deleteElementCard(e) {
-  e.target.closest(".elements__list-item").remove();
-}
-
-// Function to create new location cards
-function createLocationCard(locationTitle, locationLink) {
-  const locationClone = locationTemplate.cloneNode(true);
-
-  const locationImage = locationClone.querySelector(".elements__image");
-  const locationName = locationClone.querySelector(".elements__location-name");
-  const likeButton = locationClone.querySelector(".elements__like");
-  const trashButton = locationClone.querySelector(".elements__trash");
-
-  locationImage.src = locationLink;
-  locationImage.addEventListener("click", viewFullImage);
-  locationImage.addEventListener("click", attachEscapeListener);
-
-  locationName.textContent = locationTitle;
-  likeButton.addEventListener("click", toggleLikedPicture);
-
-  trashButton.addEventListener("click", deleteElementCard);
-
-  elementsList.prepend(locationClone);
 }
 
 // Function to populate edit form when opened
@@ -142,7 +98,13 @@ function editFormSubmitHandler(e) {
 // Function to handle add location form when submitted. Will create new location card.
 function addFormSubmitHandler(e) {
   e.preventDefault();
-  createLocationCard(titleInput.value.trim(), imageLinkInput.value.trim());
+  const card = new Card(
+    titleInput.value.trim(),
+    imageLinkInput.value.trim(),
+    locationTemplate
+  );
+  const newCard = card.generateCard();
+  elementsList.prepend(newCard);
   addForm.reset();
 }
 
@@ -154,11 +116,44 @@ function checkHasForm(popup) {
   return false;
 }
 
+function hideInputError(form, inputField) {
+  const errorField = form.querySelector(`#${inputField.id}-error`);
+  inputField.classList.remove("popup__input_type_error");
+  errorField.classList.remove("popup__input-error_visible");
+  errorField.textContent = "";
+}
+
+function hasInvalidInput(inputList) {
+  return inputList.some((inputField) => {
+    if (inputField.validity.valid === false) {
+      return true;
+    }
+  });
+}
+
+function toggleButtonState(inputList, buttonElement) {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add("button_inactive");
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove("button_inactive");
+    buttonElement.disabled = false;
+  }
+}
+
 // Function to close form popup and reset input fields
 function closeFormHandler(popup) {
   const popupForm = popup.querySelector(".popup__form");
   popup.classList.remove("popup_opened");
   popupForm.reset();
+
+  const inputList = Array.from(popupForm.querySelectorAll(".popup__input"));
+  const submitButton = popupForm.querySelector(".popup__submit");
+  toggleButtonState(inputList, submitButton);
+
+  inputList.forEach((input) => {
+    hideInputError(popupForm, input);
+  });
 }
 
 // Function to close image popup
@@ -168,7 +163,9 @@ function closeImageHandler() {
 
 // Iterate through pre-existing locations with forEach to create initial location cards on page load
 initialCards.forEach((location) => {
-  createLocationCard(location.name, location.link);
+  const card = new Card(location.name, location.link, locationTemplate);
+  const newCard = card.generateCard();
+  elementsList.prepend(newCard);
 });
 
 editButton.addEventListener("click", () => {
@@ -215,7 +212,7 @@ addForm.addEventListener("submit", (e) => {
 });
 
 imageCloseButton.addEventListener("click", () => {
-  toggleImage();
+  closeImageHandler();
 });
 
 imagePopup.addEventListener("click", (e) => {
@@ -224,3 +221,20 @@ imagePopup.addEventListener("click", (e) => {
     closeImageHandler();
   }
 });
+
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit",
+  inactiveButtonClass: "button_inactive",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_visible",
+};
+
+const formsList = Array.from(document.forms);
+
+formsList.forEach((form) => {
+  const newFormValidator = new FormValidator(settings, form);
+  newFormValidator.enableValidation();
+});
+
