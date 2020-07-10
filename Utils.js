@@ -1,26 +1,26 @@
 const imagePopup = document.querySelector(".popup_type_image");
 
-class Utils {
-  _viewFullImage(e) {
-    const fullSizeImage = imagePopup.querySelector(".popup__full-size-image");
-    const imageCaption = imagePopup.querySelector(".popup__image-caption");
-    imagePopup.classList.toggle("popup_opened");
+function viewFullImage(e) {
+  const fullSizeImage = imagePopup.querySelector(".popup__full-size-image");
+  const imageCaption = imagePopup.querySelector(".popup__image-caption");
+  imagePopup.classList.toggle("popup_opened");
 
-    fullSizeImage.src = e.target.src;
-    imageCaption.textContent = e.target.nextElementSibling.querySelector(
-      ".elements__location-name"
-    ).textContent;
-  }
+  fullSizeImage.src = e.target.src;
+  imageCaption.textContent = e.target.nextElementSibling.querySelector(
+    ".elements__location-name"
+  ).textContent;
+}
 
-  _escapeKeyClose(e) {
-    if (e.key === "Escape") {
-      if (imagePopup.classList.contains("popup_opened")) {
-        imagePopup.classList.toggle("popup_opened");
+function escapeKeyClose(e) {
+  if (e.key === "Escape") {
+    if (imagePopup.classList.contains("popup_opened")) {
+      imagePopup.classList.toggle("popup_opened");
 
-        document.removeEventListener("keyup", this._escapeKeyClose);
-      }
+      document.removeEventListener("keyup", escapeKeyClose);
     }
   }
 }
 
-export default Utils;
+function attachEscKeyListener() {
+  document.addEventListener("keyup", escapeKeyClose);
+}

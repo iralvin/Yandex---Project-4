@@ -1,11 +1,8 @@
-import Utils from "./Utils.js";
-
 class Card {
   constructor(locationTitle, locationLink, templateSelector) {
     this._locationTitle = locationTitle;
     this._locationLink = locationLink;
     this._templateSelector = templateSelector;
-    this._utils = new Utils();
   }
 
   _getTemplate() {
@@ -20,10 +17,6 @@ class Card {
     e.target.closest(".elements__list-item").remove();
   }
 
-  _attachEscKeyListener() {
-    document.addEventListener("keyup", this._utils._escapeKeyClose);
-  }
-
   _setEventListeners() {
     this._likeButton = this._cardElement.querySelector(".elements__like");
     this._trashButton = this._cardElement.querySelector(".elements__trash");
@@ -31,10 +24,8 @@ class Card {
     this._likeButton.addEventListener("click", this._toggleLikedPicture);
     this._trashButton.addEventListener("click", this._deleteElementCard);
 
-    this._locationImage.addEventListener("click", this._utils._viewFullImage);
-    this._locationImage.addEventListener("click", () => {
-      this._attachEscKeyListener();
-    });
+    this._locationImage.addEventListener("click", viewFullImage);
+    this._locationImage.addEventListener("click", attachEscKeyListener);
   }
 
   generateCard() {
