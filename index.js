@@ -55,7 +55,27 @@ const initialCards = [
   },
 ];
 
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit",
+  inactiveButtonClass: "button_inactive",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_visible",
+};
+
+const formsList = Array.from(document.forms);
+const formValidator = new FormValidator(settings);
+
 const popupList = Array.from(document.querySelectorAll(".popup"));
+
+// Function to check if popup contains a form element
+function checkHasForm(popup) {
+  if (popup.querySelector(".popup__form")) {
+    return true;
+  }
+  return false;
+}
 
 // Creates a listener for Esc key to close popups
 function escapeKeyClose(e) {
@@ -65,7 +85,7 @@ function escapeKeyClose(e) {
         togglePopup(popup);
 
         if (checkHasForm(popup)) {
-          closeFormHandler(popup);
+          formValidator._closeFormHandler(popup);
         }
         document.removeEventListener("keyup", escapeKeyClose);
       }
@@ -108,54 +128,6 @@ function addFormSubmitHandler(e) {
   addForm.reset();
 }
 
-// Function to check if popup contains a form element
-function checkHasForm(popup) {
-  if (popup.querySelector(".popup__form")) {
-    return true;
-  }
-  return false;
-}
-
-function hideInputError(form, inputField) {
-  const errorField = form.querySelector(`#${inputField.id}-error`);
-  inputField.classList.remove("popup__input_type_error");
-  errorField.classList.remove("popup__input-error_visible");
-  errorField.textContent = "";
-}
-
-function hasInvalidInput(inputList) {
-  return inputList.some((inputField) => {
-    if (inputField.validity.valid === false) {
-      return true;
-    }
-  });
-}
-
-function toggleButtonState(inputList, buttonElement) {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add("button_inactive");
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.classList.remove("button_inactive");
-    buttonElement.disabled = false;
-  }
-}
-
-// Function to close form popup and reset input fields
-function closeFormHandler(popup) {
-  const popupForm = popup.querySelector(".popup__form");
-  popup.classList.remove("popup_opened");
-  popupForm.reset();
-
-  const inputList = Array.from(popupForm.querySelectorAll(".popup__input"));
-  const submitButton = popupForm.querySelector(".popup__submit");
-  toggleButtonState(inputList, submitButton);
-
-  inputList.forEach((input) => {
-    hideInputError(popupForm, input);
-  });
-}
-
 // Function to close image popup
 function closeImageHandler() {
   imagePopup.classList.remove("popup_opened");
@@ -175,19 +147,19 @@ editButton.addEventListener("click", () => {
 });
 
 editCloseButton.addEventListener("click", () => {
-  closeFormHandler(editPopup);
+  formValidator._closeFormHandler(editPopup);
 });
 
 editPopup.addEventListener("click", (e) => {
   const targetElement = e.target;
   if (targetElement.classList.contains("popup")) {
-    closeFormHandler(editPopup);
+    formValidator._closeFormHandler(editPopup);
   }
 });
 
 editForm.addEventListener("submit", (e) => {
   editFormSubmitHandler(e);
-  closeFormHandler(editPopup);
+  formValidator._closeFormHandler(editPopup);
 });
 
 addButton.addEventListener("click", () => {
@@ -196,19 +168,19 @@ addButton.addEventListener("click", () => {
 });
 
 addCloseButton.addEventListener("click", () => {
-  closeFormHandler(addPopup);
+  formValidator._closeFormHandler(addPopup);
 });
 
 addPopup.addEventListener("click", (e) => {
   const targetElement = e.target;
   if (targetElement.classList.contains("popup")) {
-    closeFormHandler(addPopup);
+    formValidator._closeFormHandler(addPopup);
   }
 });
 
 addForm.addEventListener("submit", (e) => {
   addFormSubmitHandler(e);
-  closeFormHandler(addPopup);
+  formValidator._closeFormHandler(addPopup);
 });
 
 imageCloseButton.addEventListener("click", () => {
@@ -222,19 +194,7 @@ imagePopup.addEventListener("click", (e) => {
   }
 });
 
-const settings = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__submit",
-  inactiveButtonClass: "button_inactive",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error_visible",
-};
-
-const formsList = Array.from(document.forms);
-
 formsList.forEach((form) => {
   const newFormValidator = new FormValidator(settings, form);
   newFormValidator.enableValidation();
 });
-

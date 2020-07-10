@@ -1,7 +1,21 @@
 class FormValidator {
-  constructor(settings, form) {
+  constructor(settings, form = undefined) {
     this._validationObject = settings;
     this._form = form;
+  }
+
+  _closeFormHandler(popup) {
+    const popupForm = popup.querySelector(".popup__form");
+    popup.classList.remove("popup_opened");
+    popupForm.reset();
+
+    const inputList = Array.from(popupForm.querySelectorAll(".popup__input"));
+    const submitButton = popupForm.querySelector(".popup__submit");
+    this._toggleButtonState(inputList, submitButton, this._validationObject);
+
+    inputList.forEach((input) => {
+      this._hideInputError(popupForm, input, this._validationObject);
+    });
   }
 
   _hideInputError(form, inputField, validationObject) {

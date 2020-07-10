@@ -1,16 +1,15 @@
-const imagePopup = document.querySelector(".popup_type_image");
+import Utils from "./Utils.js";
 
 class Card {
   constructor(locationTitle, locationLink, templateSelector) {
     this._locationTitle = locationTitle;
     this._locationLink = locationLink;
     this._templateSelector = templateSelector;
+    this._utils = new Utils();
   }
 
   _getTemplate() {
-    const cardTemplate = this._templateSelector.cloneNode(true);
-
-    return cardTemplate;
+    return this._templateSelector.cloneNode(true);
   }
 
   _toggleLikedPicture(e) {
@@ -21,30 +20,8 @@ class Card {
     e.target.closest(".elements__list-item").remove();
   }
 
-  _viewFullImage(e) {
-    const fullSizeImage = imagePopup.querySelector(".popup__full-size-image");
-    const imageCaption = imagePopup.querySelector(".popup__image-caption");
-    imagePopup.classList.toggle("popup_opened");
-
-    fullSizeImage.src = e.target.src;
-    imageCaption.textContent = e.target.nextElementSibling.querySelector(
-      ".elements__location-name"
-    ).textContent;
-  }
-
-  _escapeKeyClose(e) {
-    if (e.key === "Escape") {
-      if (imagePopup.classList.contains("popup_opened")) {
-        imagePopup.classList.toggle("popup_opened");
-
-        document.removeEventListener("keyup", this._escapeKeyClose);
-      }
-    }
-  }
-
   _attachEscKeyListener() {
-    console.log("attached listenere");
-    document.addEventListener("keyup", this._escapeKeyClose);
+    document.addEventListener("keyup", this._utils._escapeKeyClose);
   }
 
   _setEventListeners() {
@@ -54,7 +31,7 @@ class Card {
     this._likeButton.addEventListener("click", this._toggleLikedPicture);
     this._trashButton.addEventListener("click", this._deleteElementCard);
 
-    this._locationImage.addEventListener("click", this._viewFullImage);
+    this._locationImage.addEventListener("click", this._utils._viewFullImage);
     this._locationImage.addEventListener("click", () => {
       this._attachEscKeyListener();
     });
