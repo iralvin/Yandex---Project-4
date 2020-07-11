@@ -1,4 +1,4 @@
-import {viewFullImage, attachEscKeyListener} from "./Utils.js";
+import viewFullImage from "./Utils.js";
 
 class Card {
   constructor(locationTitle, locationLink, templateSelector) {
@@ -27,7 +27,7 @@ class Card {
     this._trashButton.addEventListener("click", this._deleteElementCard);
 
     this._locationImage.addEventListener("click", viewFullImage);
-    this._locationImage.addEventListener("click", attachEscKeyListener);
+    // this._locationImage.addEventListener("click", attachEscKeyListener);
   }
 
   generateCard() {

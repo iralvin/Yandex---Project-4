@@ -9,6 +9,7 @@ function viewFullImage(e) {
   imageCaption.textContent = e.target.nextElementSibling.querySelector(
     ".elements__location-name"
   ).textContent;
+  attachEscKeyListener();
 }
 
 function escapeKeyClose(e) {
@@ -25,4 +26,4 @@ function attachEscKeyListener() {
   document.addEventListener("keyup", escapeKeyClose);
 }
 
-export {viewFullImage, attachEscKeyListener};
+export default viewFullImage;
