@@ -24,3 +24,5 @@ function escapeKeyClose(e) {
 function attachEscKeyListener() {
   document.addEventListener("keyup", escapeKeyClose);
 }
+
+export {viewFullImage, attachEscKeyListener};

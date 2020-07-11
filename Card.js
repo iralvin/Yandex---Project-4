@@ -1,3 +1,5 @@
+import {viewFullImage, attachEscKeyListener} from "./Utils.js";
+
 class Card {
   constructor(locationTitle, locationLink, templateSelector) {
     this._locationTitle = locationTitle;

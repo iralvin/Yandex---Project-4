@@ -98,7 +98,7 @@ function attachEscapeListener() {
 }
 
 // Function to populate edit form when opened
-function populateProfileEditForm(form) {
+function populateProfileEditForm() {
   nameInput.value = profileName.textContent;
   aboutMeInput.value = profileAboutMe.textContent;
 }
@@ -141,7 +141,7 @@ initialCards.forEach((location) => {
 });
 
 editButton.addEventListener("click", () => {
-  populateProfileEditForm(editForm);
+  populateProfileEditForm();
   togglePopup(editPopup);
   attachEscapeListener();
 });

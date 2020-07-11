@@ -1,4 +1,4 @@
-# yandex-practicum-sprint-5
+# yandex-practicum-sprint-7
 
 Link: https://givememyfiletofish.github.io/web_project_4/
 
@@ -14,3 +14,5 @@ Technologies used include:
 - Event listeners
 - Maps
 - If/else statements
+- Classes
+- Import/export
