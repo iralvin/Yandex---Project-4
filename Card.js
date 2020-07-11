@@ -27,7 +27,6 @@ class Card {
     this._trashButton.addEventListener("click", this._deleteElementCard);
 
     this._locationImage.addEventListener("click", viewFullImage);
-    // this._locationImage.addEventListener("click", attachEscKeyListener);
   }
 
   generateCard() {
