@@ -1,10 +1,9 @@
-import viewFullImage from "./Utils.js";
-
 class Card {
-  constructor(locationTitle, locationLink, templateSelector) {
-    this._locationTitle = locationTitle;
-    this._locationLink = locationLink;
+  constructor({ name, link }, templateSelector, viewFullImage) {
+    this._locationTitle = name;
+    this._locationLink = link;
     this._templateSelector = templateSelector;
+    this._viewFullImage = viewFullImage;
   }
 
   _getTemplate() {
@@ -26,7 +25,7 @@ class Card {
     this._likeButton.addEventListener("click", this._toggleLikedPicture);
     this._trashButton.addEventListener("click", this._deleteElementCard);
 
-    this._locationImage.addEventListener("click", viewFullImage);
+    this._locationImage.addEventListener("click", this._viewFullImage);
   }
 
   generateCard() {

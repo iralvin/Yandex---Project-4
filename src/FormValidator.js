@@ -6,7 +6,6 @@ class FormValidator {
 
   _closeFormHandler(popup) {
     const popupForm = popup.querySelector(".popup__form");
-    popup.classList.remove("popup_opened");
     popupForm.reset();
 
     const inputList = Array.from(popupForm.querySelectorAll(".popup__input"));
