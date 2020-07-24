@@ -25,7 +25,6 @@ export default class Popup {
 
     this._popupElement.addEventListener("click", (e) => {
       const targetElement = e.target;
-      console.log("exited");
       if (targetElement.classList.contains("popup_type_image")) {
         this.close();
       } else if (targetElement.classList.contains("popup")) {

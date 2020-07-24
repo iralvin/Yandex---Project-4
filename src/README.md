@@ -1,4 +1,4 @@
-# yandex-practicum-sprint-7
+# yandex-practicum-sprint-8
 
 Link: https://givememyfiletofish.github.io/web_project_4/
 
@@ -16,3 +16,5 @@ Technologies used include:
 - If/else statements
 - Classes
 - Import/export
+- Webpack
+- Babel

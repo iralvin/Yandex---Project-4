@@ -104,6 +104,7 @@ const handleAddFormSubmit = (locationData) => {
     popupWithImage.open(locationData);
   });
   const newCard = card.generateCard();
+
   elementsList.prepend(newCard);
 };
 
@@ -141,4 +142,3 @@ formsList.forEach((form) => {
   const newFormValidator = new FormValidator(settings, form);
   newFormValidator.enableValidation();
 });
-
