@@ -1,6 +1,7 @@
 .elements__like {
-  width: 20.76px;
-  height: 18.13px;
+  padding: 0;
+  width: 20px;
+  height: 18px;
 
   background-image: url("../../../images/heart.svg");
   background-position: center;

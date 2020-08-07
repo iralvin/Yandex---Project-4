@@ -12,11 +12,14 @@
 
     <main>
       <section class="profile page__section">
+
         <img
           class="profile__avatar"
           src="./images/image.jpg"
           alt="old man in wearing red beanie"
         />
+        <button class="profile__avatar-button button"></button>
+
 
         <div class="profile__info">
           <div class="profile__name-container">
@@ -115,6 +118,40 @@
       </div>
     </div>
 
+    <div class="popup popup_type_profile-pic">
+      <div class="popup__dialog-window">
+        <button class="popup__close button"></button>
+        <form class="popup__form" action="#" novalidate autocomplete="off">
+          <h2 class="popup__title">Change profile picture</h2>
+          <input
+            class="popup__input popup__input_margin_top-input popup__input_type_title"
+            id="profile-pic-link"
+            type="url"
+            name="profile-pic"
+            placeholder="Title"
+            minlength="1"
+            required
+          />
+          <span class="popup__input-error" id="profile-pic-link-error"></span>
+          <button class="popup__submit create-button button" type="submit">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_delete">
+      <div class="popup__dialog-window popup__dialog-window_delete">
+        <button class="popup__close button"></button>
+        <form class="popup__form" action="#" novalidate autocomplete="off">
+          <h2 class="popup__title">Are you sure?</h2>
+          <button class="popup__submit create-button button" type="submit">
+            Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div class="popup popup_type_image">
       <div class="popup__image-container">
         <button class="popup__close button"></button>
@@ -131,7 +168,11 @@
         <img class="elements__image" src="#" alt="location image" />
         <div class="elements__title-container">
           <h2 class="elements__location-name"></h2>
-          <button class="elements__like button"></button>
+          <div class="elements__like-container">
+            <button class="elements__like button"></button>
+            <p class="elements__number-likes"></p>
+          </div>
+
         </div>
       </li>
     </template>

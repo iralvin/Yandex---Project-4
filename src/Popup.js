@@ -7,7 +7,8 @@ export default class Popup {
 
   _handleEscClose(e) {
     if (e.key === "Escape") {
-      if (this._popupElement.classList.contains("popup_type_image")) {
+      if (this._popupElement.classList.contains("popup_type_image")
+        || this._popupElement.classList.contains("popup_type_delete")) {
         this.close();
       } else if (this._popupElement.classList.contains("popup")) {
         this.close();
@@ -25,7 +26,8 @@ export default class Popup {
 
     this._popupElement.addEventListener("click", (e) => {
       const targetElement = e.target;
-      if (targetElement.classList.contains("popup_type_image")) {
+      if (targetElement.classList.contains("popup_type_image")
+      || targetElement.classList.contains("popup_type_delete")) {
         this.close();
       } else if (targetElement.classList.contains("popup")) {
         this.close();
