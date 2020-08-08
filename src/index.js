@@ -42,8 +42,9 @@ const popupWithImage = new PopupWithImage(".popup_type_image");
 const userInfoSelector = {
   profileName: ".profile__name",
   profileProfession: ".profile__about-me",
+  profileAvatar: ".profile__avatar",
 };
-const userInfoClass = new UserInfo(userInfoSelector);
+const userInfoClass = new UserInfo(userInfoSelector, nameInput, aboutMeInput);
 
 const profilePic = document.querySelector(".profile__avatar");
 let userID;
@@ -55,26 +56,12 @@ const api = new Api("https://around.nomoreparties.co/v1/group-3/", {
   },
 });
 
-function populateProfileEditForm() {
-  const userInfo = userInfoClass.getUserInfo();
-  nameInput.value = userInfo.name;
-  aboutMeInput.value = userInfo.profession;
-}
-
 const handleEditFormSubmit = ({ name, profession }, submitButton) => {
   //////////// SAVE USER INFORMATION
 
-  return api.setUserInfo({ name, profession }).then((res) => {
-    if (res.ok) {
-      submitButton.textContent = "Save";
-      userInfoClass.setUserInfo(name, profession);
-    }
-    else {
-      Promise.reject("Error " + res.statusText);
-    }
-  })
-  .catch(err => {
-    console.log(err);
+  return api.setUserInfo({ name, profession }).then(() => {
+    submitButton.textContent = "Save";
+    userInfoClass.setUserInfo(name, profession);
   });
 };
 
@@ -91,48 +78,25 @@ const handleRemoveImageLike = (card) => {
 };
 
 let cardToDelete;
-const handleConfirmDeleteCard = () => {
-  return api.deleteCard(cardToDelete).then((res) => {
-    if (res.ok) {
-      cardToDelete._cardElement.remove();
-    }
-    else {
-      Promise.reject("Error " + res.statusText);
-    }
-  })
-  .catch(err => {
-    console.log(err);
+const handleConfirmDeleteCard = ({}, submitButton) => {
+  return api.deleteCard(cardToDelete).then(() => {
+    cardToDelete._cardElement.remove();
+    submitButton.textContent = "Yes";
+
   });
 };
 
 const handleChangeProfilePic = (newProfilePic, submitButton) => {
-  return api
-    .setUserAvatar(newProfilePic, submitButton)
-    .then((res) => {
-      if (res.ok) {
-        submitButton.textContent = "Save";
-        profilePic.src = newProfilePic["profile-pic"];
-      } else {
-        Promise.reject("Error " + res.statusText);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return api.setUserAvatar(newProfilePic, submitButton).then(() => {
+    submitButton.textContent = "Save";
+    userInfoClass.setUserAvatar(newProfilePic["profile-pic"]);
+  });
 };
 
 // ADD LOCATION FORM
 const handleAddFormSubmit = (newLocationData, submitButton) => {
   return api
     .addNewCard(newLocationData)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      else {
-        Promise.reject("Error " + res.statusText);
-      }
-    })
     .then((res) => {
       const card = new Card(
         res,
@@ -141,7 +105,7 @@ const handleAddFormSubmit = (newLocationData, submitButton) => {
           popupWithImage.open(newLocationData);
         },
         (cardToBeDelete) => {
-          deletePopupClass.open();
+          deletePopupWithDeleteClass.open();
           cardToDelete = cardToBeDelete;
         },
         userID,
@@ -154,13 +118,9 @@ const handleAddFormSubmit = (newLocationData, submitButton) => {
     })
     .then(() => {
       submitButton.textContent = "Create";
-    })
-    .catch(err => {
-      console.log(err);
     });
 };
 
-const editPopupClass = new Popup(".popup_type_edit", handleResetForm);
 const editPopupFormClass = new PopupWithForm(
   ".popup_type_edit",
   handleEditFormSubmit,
@@ -168,11 +128,10 @@ const editPopupFormClass = new PopupWithForm(
 );
 editPopupFormClass.setEventListeners();
 editButton.addEventListener("click", () => {
-  populateProfileEditForm();
-  editPopupClass.open();
+  userInfoClass.setUserInputValues();
+  editPopupFormClass.open();
 });
 
-const addPopupClass = new Popup(".popup_type_add", handleResetForm);
 const addPopupFormClass = new PopupWithForm(
   ".popup_type_add",
   handleAddFormSubmit,
@@ -180,13 +139,9 @@ const addPopupFormClass = new PopupWithForm(
 );
 addPopupFormClass.setEventListeners();
 addButton.addEventListener("click", () => {
-  addPopupClass.open();
+  addPopupFormClass.open();
 });
 
-const changeProfilePicPopupClass = new Popup(
-  ".popup_type_profile-pic",
-  handleResetForm
-);
 const changeProfilePicFormPopupClass = new PopupWithForm(
   ".popup_type_profile-pic",
   handleChangeProfilePic,
@@ -194,10 +149,9 @@ const changeProfilePicFormPopupClass = new PopupWithForm(
 );
 changeProfilePicFormPopupClass.setEventListeners();
 changeProfilePictureButton.addEventListener("click", () => {
-  changeProfilePicPopupClass.open();
+  changeProfilePicFormPopupClass.open();
 });
 
-const deletePopupClass = new Popup(".popup_type_delete");
 const deletePopupWithDeleteClass = new PopupWithForm(
   ".popup_type_delete",
   handleConfirmDeleteCard
@@ -205,9 +159,8 @@ const deletePopupWithDeleteClass = new PopupWithForm(
 deletePopupWithDeleteClass.setEventListeners();
 
 api.getUserInfo().then((result) => {
-  profilePic.src = result.avatar;
-  document.querySelector(".profile__name").textContent = result.name;
-  document.querySelector(".profile__about-me").textContent = result.about;
+  userInfoClass.setUserAvatar(result.avatar);
+  userInfoClass.setUserInfo(result.name, result.about);
   userID = result._id;
 });
 
@@ -223,7 +176,7 @@ api.getInitialCards().then((result) => {
             popupWithImage.open(item);
           },
           (cardToBeDelete) => {
-            deletePopupClass.open();
+            deletePopupWithDeleteClass.open();
             cardToDelete = cardToBeDelete;
           },
           userID,

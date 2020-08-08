@@ -28,41 +28,15 @@ class Card {
 
   _toggleLikedPicture() {
     if (this._likeButton.classList.contains("elements__like_liked")) {
-      this._handleRemoveLike(this._card)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            Promise.reject("Error " + res.statusText);
-          }
-        })
-        .then((data) => {
-          this._likeButton.classList.remove("elements__like_liked");
-          this._numberLikesText.textContent = data.likes.length;
-
-          // console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this._handleRemoveLike(this._card).then((data) => {
+        this._likeButton.classList.remove("elements__like_liked");
+        this._numberLikesText.textContent = data.likes.length;
+      });
     } else {
-      this._handleAddLike(this._card)
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          } else {
-            Promise.reject("Error " + res.statusText);
-          }
-        })
-        .then((data) => {
-          this._likeButton.classList.add("elements__like_liked");
-          this._numberLikesText.textContent = data.likes.length;
-
-          // console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this._handleAddLike(this._card).then((data) => {
+        this._likeButton.classList.add("elements__like_liked");
+        this._numberLikesText.textContent = data.likes.length;
+      });
     }
   }
 
@@ -85,7 +59,7 @@ class Card {
   }
 
   _checkIfImageIsLiked() {
-    this._card.likes.forEach((user) => {
+    this._card.likes.some((user) => {
       if (this._userID === user._id) {
         this._likeButton.classList.add("elements__like_liked");
       } else {

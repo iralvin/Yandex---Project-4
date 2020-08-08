@@ -10,9 +10,8 @@ export default class Api {
       .then((res) => {
         if (res.ok) {
           return res.json();
-        } else {
-          Promise.reject("Error " + res.statusText);
         }
+        Promise.reject("Error " + res.statusText);
       })
       .catch((err) => {
         console.log("logged " + err);
@@ -25,9 +24,8 @@ export default class Api {
       .then((res) => {
         if (res.ok) {
           return res.json();
-        } else {
-          Promise.reject("Error " + res.statusText);
         }
+        Promise.reject("Error " + res.statusText);
       })
       .then((result) => {
         return result;
@@ -44,12 +42,30 @@ export default class Api {
       link: newLocationData.link,
     });
 
-    return fetch(`${this._baseUrl}cards`, this._options);
+    return fetch(`${this._baseUrl}cards`, this._options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject("Error " + res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   deleteCard(cardToDelete) {
     this._options.method = "DELETE";
-    return fetch(`${this._baseUrl}cards/${cardToDelete._cardID}`, this._options);
+    return fetch(`${this._baseUrl}cards/${cardToDelete._cardID}`, this._options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject("Error " + res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   setUserAvatar(newProfilePic) {
@@ -58,7 +74,16 @@ export default class Api {
       avatar: newProfilePic["profile-pic"],
     });
 
-    return fetch(`${this._baseUrl}users/me/avatar`, this._options);
+    return fetch(`${this._baseUrl}users/me/avatar`, this._options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject("Error " + res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   setUserInfo({ name, profession }) {
@@ -68,18 +93,45 @@ export default class Api {
       about: profession,
     });
 
-    return fetch(`${this._baseUrl}users/me`, this._options);
+    return fetch(`${this._baseUrl}users/me`, this._options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject("Error " + res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   setLikeForImage(card) {
     this._options.method = "PUT";
 
-    return fetch(`${this._baseUrl}cards/likes/${card._id}`, this._options);
+    return fetch(`${this._baseUrl}cards/likes/${card._id}`, this._options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject("Error " + res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   removeLikeForImage(card) {
     this._options.method = "DELETE";
 
-    return fetch(`${this._baseUrl}cards/likes/${card._id}`, this._options);
+    return fetch(`${this._baseUrl}cards/likes/${card._id}`, this._options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        Promise.reject("Error " + res.statusText);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

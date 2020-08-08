@@ -5,15 +5,11 @@ export default class Popup {
     this._formReset = formReset;
   }
 
+
   _handleEscClose(e) {
     if (e.key === "Escape") {
-      if (this._popupElement.classList.contains("popup_type_image")
-        || this._popupElement.classList.contains("popup_type_delete")) {
-        this.close();
-      } else if (this._popupElement.classList.contains("popup")) {
-        this.close();
-        this._formReset(this._popupElement);
-      }
+      this.close();
+      // this._formReset(this._popupElement);
     }
   }
 
@@ -26,12 +22,8 @@ export default class Popup {
 
     this._popupElement.addEventListener("click", (e) => {
       const targetElement = e.target;
-      if (targetElement.classList.contains("popup_type_image")
-      || targetElement.classList.contains("popup_type_delete")) {
+      if (targetElement.classList.contains("popup")) {
         this.close();
-      } else if (targetElement.classList.contains("popup")) {
-        this.close();
-        this._formReset(this._popupElement);
       }
     });
   }
