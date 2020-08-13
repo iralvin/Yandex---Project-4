@@ -1,8 +1,8 @@
-# yandex-practicum-sprint-8
+# Yandex Practicum Project 4
 
 Link: https://iralvin.github.io/Yandex---Project-4/
 
-This is a profile page of a user. It allows the user to edit their name as well as an about me. A grid of photos with location names is displayed and users can add new locations by clicking the add button. Add button will prompt user to add a location name and image link. If input fields are left empty, no changes will be made when submitted.
+This is a profile page of a user. It allows the user to edit their name as well as an about me. A grid of photos with location names is displayed and users can add new locations by clicking the add button. Add button will prompt user to add a location name and image link. If input fields are left empty, no changes will be made when submitted. Forms have client-side form validation and new locations as well as photo likes are saved to a server.
 
 Technologies used include:
 
